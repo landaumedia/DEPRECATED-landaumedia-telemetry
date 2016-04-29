@@ -63,7 +63,7 @@ Telemetry.Master.Sub.LastMuhhaa.Set(123);
 
 The generated metricnames have the following format:
 
-     $assemblyname$.$machinename$(.$environment$).$rootpropname$.$sub1name$.$sub1propname$....
+     $assemblyproduct$.$machinename$(.$environment$).$rootpropname$.$sub1name$.$sub1propname$....
 
 Given the machinename is ***MacGyver*** with the above code, we get the following metricnames:
 
