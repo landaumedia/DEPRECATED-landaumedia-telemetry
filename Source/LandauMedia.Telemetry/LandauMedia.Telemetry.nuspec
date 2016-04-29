@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>LandauMedia.Telemetry</id>
+    <version>$version$</version>
+    <authors>Steve Wagner</authors>
+    <owners>Steve Wagner</owners>
+    <copyright>LandauMedia Monitoring AG &amp; Co. KG</copyright>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/landaumedia/landaumedia-telemetry</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An opinionated tiny lib, which sends telemetry data in StatsD format in a strongly typed way.</description>
+    <summary>Telemetry data in StatsD</summary>
+    <tags>telemetry stats metrics</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>
