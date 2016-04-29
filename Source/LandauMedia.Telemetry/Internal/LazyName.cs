@@ -18,7 +18,7 @@ namespace LandauMedia.Telemetry.Internal
         {
             return new Lazy<string>(() =>
             {
-                var name = _baseType.GetProperties().Where(p => p.GetValue(null) == thisHandle).Select(p => p.Name).FirstOrDefault();
+                var name = _baseType.GetProperties().Where(p => p.GetValue(null, null) == thisHandle).Select(p => p.Name).FirstOrDefault();
                 if(name == null)
                     name = _baseType.GetFields().Where(f => f.GetValue(null) == thisHandle).Select(f => f.Name).FirstOrDefault();
 
