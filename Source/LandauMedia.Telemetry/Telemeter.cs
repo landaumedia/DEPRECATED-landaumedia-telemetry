@@ -21,7 +21,7 @@ namespace LandauMedia.Telemetry
 
             try
             {
-                var entryAssembly = Assembly.GetEntryAssembly();
+                var entryAssembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
                 var baseName = entryAssembly.GetCustomAttributes(true)
                     .OfType<AssemblyTitleAttribute>()
                     .Select(t => t.Title)
