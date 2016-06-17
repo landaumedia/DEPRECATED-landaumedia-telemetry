@@ -14,6 +14,8 @@ namespace LandauMedia.Telemetry
         static string _baseName;
         static ITelemeterImpl _impl = new EmptyTelemeterImpl();
 
+        public static bool ThrowWhenInitializeFailed { get; set; }
+
         public static void Initialize(string host, int port, string environment)
         {
             if(!( _impl is EmptyTelemeterImpl ))
@@ -41,6 +43,8 @@ namespace LandauMedia.Telemetry
             catch(Exception exception)
             {
                 Trace.WriteLine("Failed to initialize telemeter: " + exception);
+                if(ThrowWhenInitializeFailed)
+                    throw;
             }
         }
 
