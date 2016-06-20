@@ -1,0 +1,5 @@
+*/
+!repositories.config
+!.gitignore
+!ILRepack/
+!PSake/

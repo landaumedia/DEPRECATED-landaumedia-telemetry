@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Source\Demo\Demo.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandauMedia.Telemetry", "Source\LandauMedia.Telemetry\LandauMedia.Telemetry.csproj", "{2897609E-C3FE-4C3E-A01F-C94A9A7388C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWeb", "Source\DemoWeb\DemoWeb.csproj", "{116DE1E3-F0AB-45C2-9D79-4F15A2DB5AD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2897609E-C3FE-4C3E-A01F-C94A9A7388C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2897609E-C3FE-4C3E-A01F-C94A9A7388C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2897609E-C3FE-4C3E-A01F-C94A9A7388C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{116DE1E3-F0AB-45C2-9D79-4F15A2DB5AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{116DE1E3-F0AB-45C2-9D79-4F15A2DB5AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{116DE1E3-F0AB-45C2-9D79-4F15A2DB5AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{116DE1E3-F0AB-45C2-9D79-4F15A2DB5AD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
