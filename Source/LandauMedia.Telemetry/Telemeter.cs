@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using LandauMedia.Telemetry.Internal;
 
 namespace LandauMedia.Telemetry
@@ -73,6 +74,7 @@ namespace LandauMedia.Telemetry
             return metric;
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining)]
         static LazyName CreateLazyName()
         {
             // yes, but we have that cost only once
