@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reflection;
 
 namespace LandauMedia.Telemetry.Internal
 {
@@ -18,9 +19,11 @@ namespace LandauMedia.Telemetry.Internal
         {
             return new Lazy<string>(() =>
             {
-                var name = _baseType.GetProperties().Where(p => p.GetValue(null, null) == thisHandle).Select(p => p.Name).FirstOrDefault();
+                var name = _baseType.GetProperties(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static)
+                    .Where(p => p.GetValue(null, null) == thisHandle).Select(p => p.Name).FirstOrDefault();
                 if(name == null)
-                    name = _baseType.GetFields().Where(f => f.GetValue(null) == thisHandle).Select(f => f.Name).FirstOrDefault();
+                    name = _baseType.GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static)
+                        .Where(f => f.GetValue(null) == thisHandle).Select(f => f.Name).FirstOrDefault();
 
                 var subType = _baseType.FullName;
                 var subTypesIndex = subType.IndexOf('+');
