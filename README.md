@@ -10,7 +10,7 @@ Its an tiny opinionated lib, which is able to sends telemetry data in StatsD for
 
 #### Define Telemeters
 
-Change the product name of your **AssemblyProduct** attribute in your **AssemblyInfo.cs**.
+Change the assembly title of your **AssemblyTitle** attribute in your **AssemblyInfo.cs**.
 
 ```csharp
 [assembly: AssemblyProduct("Demo")]
