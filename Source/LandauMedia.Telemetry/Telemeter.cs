@@ -17,21 +17,28 @@ namespace LandauMedia.Telemetry
 
         public static bool ThrowWhenInitializeFailed { get; set; }
 
-        public static void Initialize(string host, int port, string environment)
+        public static bool IsInitialized { get; private set; }
+        public static Exception InitializeExeption { get; private set; }
+
+        public static void Initialize(string host, int port, string environment = null, bool addMachineName = true)
         {
             if(!( _impl is EmptyTelemeterImpl ))
                 throw new InvalidOperationException("Already initialized");
 
+            IsInitialized = false;
+            InitializeExeption = null;
+
             try
             {
                 var entryAssembly = Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly();
-                var baseName = entryAssembly.GetCustomAttributes(true)
+                var baseName = entryAssembly.GetCustomAttributes(inherit: true)
                     .OfType<AssemblyTitleAttribute>()
                     .Select(t => t.Title)
                     .DefaultIfEmpty(Path.GetFileNameWithoutExtension(entryAssembly.Location))
                     .FirstOrDefault();
 
-                baseName += "." + Environment.MachineName;
+                if(addMachineName)
+                    baseName += "." + Environment.MachineName;
 
                 if(environment != null)
                     baseName += "." + environment;
@@ -40,9 +47,12 @@ namespace LandauMedia.Telemetry
 
                 _impl = new UdpTelemeterImpl(host, port);
                 Telemeters.ForEach(stat => stat.ChangeImplementation(_impl));
+
+                IsInitialized = true;
             }
             catch(Exception exception)
             {
+                InitializeExeption = exception;
                 Trace.WriteLine("Failed to initialize telemeter: " + exception);
                 if(ThrowWhenInitializeFailed)
                     throw;
@@ -67,7 +77,8 @@ namespace LandauMedia.Telemetry
             return Add(new Timing(lazyName));
         }
 
-        static T Add<T>(T metric) where T : ITelemeter
+        static T Add<T>(T metric)
+            where T : ITelemeter
         {
             metric.ChangeImplementation(_impl);
             Telemeters.Add(metric);
@@ -78,7 +89,7 @@ namespace LandauMedia.Telemetry
         static LazyName CreateLazyName()
         {
             // yes, but we have that cost only once
-            var baseType = new StackFrame(2, true).GetMethod().DeclaringType;
+            var baseType = new StackFrame(skipFrames: 2, fNeedFileInfo: true).GetMethod().DeclaringType;
             var lazyName = new LazyName(() => _baseName, baseType);
             return lazyName;
         }
