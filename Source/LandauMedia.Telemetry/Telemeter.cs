@@ -20,7 +20,12 @@ namespace LandauMedia.Telemetry
         public static bool IsInitialized { get; private set; }
         public static Exception InitializeExeption { get; private set; }
 
-        public static void Initialize(string host, int port, string environment = null, bool addMachineName = true)
+        public static void Initialize(string host, int port, string environment = null)
+        {
+            Initialize(host, port, environment, addMachineName: false);
+        }
+
+        public static void Initialize(string host, int port, string environment, bool addMachineName)
         {
             if(!( _impl is EmptyTelemeterImpl ))
                 throw new InvalidOperationException("Already initialized");
