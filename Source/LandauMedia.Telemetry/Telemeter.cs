@@ -22,7 +22,7 @@ namespace LandauMedia.Telemetry
 
         public static void Initialize(string host, int port, string environment = null)
         {
-            Initialize(host, port, environment, addMachineName: false);
+            Initialize(host, port, environment, addMachineName: true);
         }
 
         public static void Initialize(string host, int port, string environment, bool addMachineName)
