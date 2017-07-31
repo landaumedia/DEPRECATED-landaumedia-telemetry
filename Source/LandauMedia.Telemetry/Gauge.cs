@@ -22,5 +22,11 @@ namespace LandauMedia.Telemetry
         {
             _gauge(_lazyName, value);
         }
+
+        public void Set(long? value)
+        {
+            if(value.HasValue)
+                _gauge(_lazyName, value.Value);
+        }
     }
 }
