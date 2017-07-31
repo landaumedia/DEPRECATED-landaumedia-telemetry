@@ -31,6 +31,7 @@ namespace LandauMedia.Telemetry
 
         public void Increment(int count)
         {
+            if(count==0) return;
             _icnremnent(_lazyName, count);
         }
 
@@ -41,6 +42,7 @@ namespace LandauMedia.Telemetry
 
         public void Decrement(int count)
         {
+            if(count==0) return;
             _decrement(_lazyName, count);
         }
     }
