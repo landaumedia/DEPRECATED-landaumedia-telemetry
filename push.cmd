@@ -1,3 +1,3 @@
 @ECHO OFF
-rem del *.symbols.nupkg
+del *.symbols.nupkg
 nuget push *.nupkg
