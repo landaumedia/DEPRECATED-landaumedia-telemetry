@@ -18,37 +18,21 @@ namespace LandauMedia.Telemetry.Internal
 
         public Action<Lazy<string>> GetCounterIncrementByOne()
         {
-            Func<byte[]> getData = null;
-
             return lazyName =>
             {
-                if(getData == null)
-                {
-                    var name = lazyName.Value + ":1|c";
-                    var data = Encoding.UTF8.GetBytes(name);
-                    getData = () => data;
-                }
-
-                var bytes = getData();
-                _client.Send(bytes, bytes.Length);
+                var name = lazyName.Value + ":1|c";
+                var data = Encoding.UTF8.GetBytes(name);
+                _client.Send(data, data.Length);
             };
         }
 
         public Action<Lazy<string>> GetCounterDecrementByOne()
         {
-            Func<byte[]> getData = null;
-
             return lazyName =>
             {
-                if(getData == null)
-                {
-                    var name = lazyName.Value + ":-1|c";
-                    var data = Encoding.UTF8.GetBytes(name);
-                    getData = () => data;
-                }
-
-                var bytes = getData();
-                _client.Send(bytes, bytes.Length);
+                var name = lazyName.Value + ":-1|c";
+                var data = Encoding.UTF8.GetBytes(name);
+                _client.Send(data, data.Length);
             };
         }
 
@@ -91,6 +75,6 @@ namespace LandauMedia.Telemetry.Internal
                 _client.Send(bytes, bytes.Length);
             };
         }
-        
+
     }
 }

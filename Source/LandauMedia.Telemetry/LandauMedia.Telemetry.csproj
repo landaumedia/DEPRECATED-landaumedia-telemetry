@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
@@ -11,8 +11,6 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageProjectUrl>https://github.com/landaumedia/landaumedia-telemetry</PackageProjectUrl>
     <PackageTags>telemetry stats metrics</PackageTags>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-    <Version>1.1.8</Version>
+    <Version>1.1.9</Version>
   </PropertyGroup>
 </Project>
