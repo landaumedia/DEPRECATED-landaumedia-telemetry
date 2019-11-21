@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using LandauMedia.Telemetry.Internal;
 
 namespace LandauMedia.Telemetry
@@ -24,26 +26,41 @@ namespace LandauMedia.Telemetry
             _decrementByOne = impl.GetCounterDecrementByOne();
         }
 
-        public void Increment()
+        public void Increment(string postfix = null)
         {
-            _increamentByOne(_lazyName);
+            _increamentByOne(NameWithPostfix(_lazyName, postfix));
         }
 
-        public void Increment(int count)
+        public void Increment(int count, string postfix = null)
         {
-            if(count==0) return;
-            _icnremnent(_lazyName, count);
+            if (count == 0)
+                return;
+
+            _icnremnent(NameWithPostfix(_lazyName, postfix), count);
         }
 
-        public void Decrement()
+        public void Decrement(string postfix = null)
         {
-            _decrementByOne(_lazyName);
+            _decrementByOne(NameWithPostfix(_lazyName, postfix));
         }
 
-        public void Decrement(int count)
+        public void Decrement(int count, string postfix = null)
         {
-            if(count==0) return;
-            _decrement(_lazyName, count);
+            if (count == 0)
+                return;
+            _decrement(NameWithPostfix(_lazyName, postfix), count);
+        }
+
+        static Lazy<string> NameWithPostfix(Lazy<string> baseName, string postfix = null)
+        {
+            var name = baseName;
+
+            // erweitern um 
+            if (postfix != null)
+                name = new Lazy<string>(() => baseName.Value + "." + postfix);
+
+            return name;
+
         }
     }
 }
