@@ -19,20 +19,20 @@ namespace LandauMedia.Telemetry
             _timing = impl.GetTiming();
         }
 
-        public IDisposable Record()
+        public IDisposable Record(string postfix = null)
         {
             var watch = Stopwatch.StartNew();
-            return new ActionDisposable(() => _timing(_lazyName, watch.ElapsedMilliseconds));
+            return new ActionDisposable(() => _timing(NameWithPostfix(_lazyName, postfix), watch.ElapsedMilliseconds));
         }
 
-        public void Record(Stopwatch watch)
+        public void Record(Stopwatch watch, string postfix = null)
         {
-            _timing(_lazyName, watch.ElapsedMilliseconds);
+            _timing(NameWithPostfix(_lazyName, postfix), watch.ElapsedMilliseconds);
         }
 
-        public void Record(TimeSpan timespan)
+        public void Record(TimeSpan timespan, string postfix = null)
         {
-            _timing(_lazyName, (long)timespan.TotalMilliseconds);
+            _timing(NameWithPostfix(_lazyName, postfix), (long)timespan.TotalMilliseconds);
         }
 
         class ActionDisposable : IDisposable
@@ -48,6 +48,18 @@ namespace LandauMedia.Telemetry
             {
                 _action();
             }
+        }
+
+        static Lazy<string> NameWithPostfix(Lazy<string> baseName, string postfix = null)
+        {
+            var name = baseName;
+
+            // erweitern um 
+            if (postfix != null)
+                name = new Lazy<string>(() => baseName.Value + "." + postfix);
+
+            return name;
+
         }
     }
 }
