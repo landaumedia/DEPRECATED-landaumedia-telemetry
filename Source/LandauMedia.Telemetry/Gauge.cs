@@ -18,15 +18,27 @@ namespace LandauMedia.Telemetry
             _gauge = impl.GetGauge();
         }
 
-        public void Set(long value)
+        public void Set(long value, string postfix = null)
         {
-            _gauge(_lazyName, value);
+            _gauge(NameWithPostfix(_lazyName, postfix), value);
         }
 
-        public void Set(long? value)
+        public void Set(long? value, string postfix = null)
         {
-            if(value.HasValue)
-                _gauge(_lazyName, value.Value);
+            if (value.HasValue)
+                _gauge(NameWithPostfix(_lazyName, postfix), value.Value);
+        }
+
+        static Lazy<string> NameWithPostfix(Lazy<string> baseName, string postfix = null)
+        {
+            var name = baseName;
+
+            // erweitern um 
+            if (postfix != null)
+                name = new Lazy<string>(() => baseName.Value + "." + postfix);
+
+            return name;
+
         }
     }
 }

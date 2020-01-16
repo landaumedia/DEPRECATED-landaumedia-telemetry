@@ -11,6 +11,6 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageProjectUrl>https://github.com/landaumedia/landaumedia-telemetry</PackageProjectUrl>
     <PackageTags>telemetry stats metrics</PackageTags>
-    <Version>1.1.9</Version>
+    <Version>1.1.10</Version>
   </PropertyGroup>
 </Project>
