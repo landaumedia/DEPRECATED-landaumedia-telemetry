@@ -27,7 +27,7 @@ namespace LandauMedia.Telemetry
 
         public static void Initialize(string host, int port, string environment, bool addMachineName)
         {
-            if(!( _impl is EmptyTelemeterImpl ))
+            if (!(_impl is EmptyTelemeterImpl))
                 throw new InvalidOperationException("Already initialized");
 
             IsInitialized = false;
@@ -42,10 +42,10 @@ namespace LandauMedia.Telemetry
                     .DefaultIfEmpty(Path.GetFileNameWithoutExtension(entryAssembly.Location))
                     .FirstOrDefault();
 
-                if(addMachineName)
+                if (addMachineName)
                     baseName += "." + Environment.MachineName;
 
-                if(environment != null)
+                if (environment != null)
                     baseName += "." + environment;
 
                 _baseName = baseName;
@@ -55,11 +55,11 @@ namespace LandauMedia.Telemetry
 
                 IsInitialized = true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 InitializeExeption = exception;
                 Trace.WriteLine("Failed to initialize telemeter: " + exception);
-                if(ThrowWhenInitializeFailed)
+                if (ThrowWhenInitializeFailed)
                     throw;
             }
         }
