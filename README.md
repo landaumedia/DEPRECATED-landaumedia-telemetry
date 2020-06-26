@@ -13,7 +13,7 @@ Its an tiny opinionated lib, which is able to sends telemetry data in StatsD for
 Change the assembly title of your **AssemblyTitle** attribute in your **AssemblyInfo.cs**.
 
 ```csharp
-[assembly: AssemblyProduct("Demo")]
+[assembly: AssemblyTitle("Demo")]
 ```
 
 Put a **Telemetry.cs** into the root of your project. Add a class like the following to it:
